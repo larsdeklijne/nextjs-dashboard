@@ -4,7 +4,7 @@ import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
  
 // data query imports
-import { fetchRevenue, fetchLatestInvoices } from '@/app/lib/data'
+import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data'
 
 export default async function Page() {
 
@@ -13,7 +13,12 @@ export default async function Page() {
     const revenue = await fetchRevenue();
     const latestInvoices = await fetchLatestInvoices();
 
-
+    const {
+        numberOfInvoices,
+        numberOfCustomers,
+        totalPaidInvoices,
+        totalPendingInvoices
+    } = await fetchCardData();
 
     return (
         <main>
